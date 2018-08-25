@@ -1,6 +1,6 @@
 package com.example.mycompany.CallVisor.persistence;
 
-import com.example.mycompany.CallVisor.logic.PropertiesManager;
+import com.example.mycompany.CallVisor.logic.util.PropertiesManager;
 import com.example.mycompany.CallVisor.persistence.entities.*;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
