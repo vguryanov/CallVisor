@@ -1,4 +1,4 @@
-package com.example.mycompany.CallVisor.logic;
+package com.example.mycompany.CallVisor.logic.util;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,8 +6,8 @@ import java.io.IOException;
 /**
  * Created by User2 on 21.08.2018.
  */
-public class LogUtil {
-    private final static String logFilePath = "C:\\ProgramData\\CallVisor\\log\\log4j-application.log";
+public class LogUtil {  //TODO discontinue?
+    private final static String logFilePath = "C:\\ProgramData\\CallVisor\\log\\log.html";
 
     public static void init() {
         File logFile = new File(logFilePath);
@@ -19,5 +19,9 @@ public class LogUtil {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static String getLogFilePath() {
+        return logFilePath;
     }
 }
