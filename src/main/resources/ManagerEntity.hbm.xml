@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.mycompany.CallVisor.persistence.entities.ManagerEntity" table="manager" schema="dbo"
+           catalog="Aloho">
+        <id name="id">
+            <column name="id" sql-type="nvarchar(50)" length="50"/>
+        </id>
+        <property name="deleted">
+            <column name="Deleted" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="fio">
+            <column name="Fio" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="login">
+            <column name="Login" sql-type="nvarchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="admintype">
+            <column name="Admintype" sql-type="int" not-null="true"/>
+        </property>
+        <property name="pass">
+            <column name="Pass" sql-type="nvarchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="location">
+            <column name="Location" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="sip">
+            <column name="Sip" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="email">
+            <column name="Email" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="mobilNumber">
+            <column name="MobilNumber" sql-type="nvarchar(15)" length="15" not-null="true"/>
+        </property>
+        <property name="fotoId">
+            <column name="FotoID" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="visibleInReception">
+            <column name="VisibleInReception" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="lastRaytingate">
+            <column name="LastRaytingate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="rayting">
+            <column name="Rayting" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="access">
+            <column name="Access" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="createDate">
+            <column name="CreateDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="dateOld">
+            <column name="DateOld" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="dopInfo">
+            <column name="DopInfo" sql-type="nvarchar(500)" length="500" not-null="true"/>
+        </property>
+        <property name="dateOldRemember">
+            <column name="DateOldRemember" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="warrantNumber">
+            <column name="WarrantNumber" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="warrantDate">
+            <column name="WarrantDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="callStandartApply">
+            <column name="CallStandartApply" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="psevdonim">
+            <column name="Psevdonim" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="oklad">
+            <column name="oklad" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="signature">
+            <column name="Signature" sql-type="nvarchar(500)" length="500" not-null="true"/>
+        </property>
+        <property name="phoneBlock">
+            <column name="PhoneBlock" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="logAsteriskEvent">
+            <column name="LogAsteriskEvent" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="klientid">
+            <column name="klientid" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="recProtection">
+            <column name="RecProtection" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="companyId">
+            <column name="CompanyID" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="oficialOklad">
+            <column name="OficialOklad" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="komission">
+            <column name="Komission" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="isDisMissed">
+            <column name="IsDisMissed" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="disMissedDate">
+            <column name="DisMissedDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="createdManagerId">
+            <column name="CreatedManagerID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="smtpServer">
+            <column name="SMTPServer" sql-type="nvarchar(60)" length="60" not-null="true"/>
+        </property>
+        <property name="pop3Server">
+            <column name="POP3Server" sql-type="nvarchar(60)" length="60" not-null="true"/>
+        </property>
+        <property name="loginEmail">
+            <column name="LoginEmail" sql-type="nvarchar(60)" length="60" not-null="true"/>
+        </property>
+        <property name="passwordEmail">
+            <column name="PasswordEmail" sql-type="nvarchar(60)" length="60" not-null="true"/>
+        </property>
+        <property name="pictureId">
+            <column name="PictureID" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="lastStartDate">
+            <column name="LastStartDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="firstStartDayDate">
+            <column name="FirstStartDayDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="lastStartVersion">
+            <column name="LastStartVersion" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="director2">
+            <column name="director2" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="color">
+            <column name="color" sql-type="int" not-null="true"/>
+        </property>
+        <property name="idKlientKategory">
+            <column name="IDKlientKategory" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="displaySize">
+            <column name="DisplaySize" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="os">
+            <column name="OS" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="noPlain">
+            <column name="NoPlain" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="vkUrl">
+            <column name="VKUrl" sql-type="nvarchar(400)" length="400" not-null="true"/>
+        </property>
+        <property name="passVk">
+            <column name="PassVK" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="loginVk">
+            <column name="LoginVK" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="sex">
+            <column name="sex" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="myVirtualBillId">
+            <column name="MyVirtualBillID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="smsAccauntDefaultId">
+            <column name="SMSAccauntDefaultID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="discountBous">
+            <column name="DiscountBous" sql-type="int" not-null="true"/>
+        </property>
+        <property name="ssl">
+            <column name="SSL" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="emailPort">
+            <column name="EmailPort" sql-type="int" not-null="true"/>
+        </property>
+        <property name="managerTypeId">
+            <column name="ManagerTypeID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="testEmailOk">
+            <column name="TestEmailOk" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="changeCompanyByLoction">
+            <column name="ChangeCompanyByLoction" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="lateManagerManagerId">
+            <column name="LateManagerManagerID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="komissionType">
+            <column name="KomissionType" sql-type="int" not-null="true"/>
+        </property>
+        <property name="locationId2">
+            <column name="LocationID2" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="noRecalcSpList">
+            <column name="NoRecalcSPList" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="medikalPercent">
+            <column name="MedikalPercent" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="kodManager">
+            <column name="KodManager" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

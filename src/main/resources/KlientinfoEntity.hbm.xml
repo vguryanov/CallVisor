@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.mycompany.CallVisor.persistence.entities.KlientinfoEntity" table="klientinfo" schema="dbo"
+           catalog="Aloho">
+        <id name="id">
+            <column name="id" sql-type="nvarchar(50)" length="50"/>
+        </id>
+        <property name="deleted">
+            <column name="Deleted" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="famaly">
+            <column name="famaly" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="name">
+            <column name="name" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="patronymic">
+            <column name="patronymic" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="dateOld">
+            <column name="dateOld" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="recordCreateDate">
+            <column name="recordCreateDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="idManagerCreater">
+            <column name="idManagerCreater" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="email">
+            <column name="email" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="saveDateOld">
+            <column name="saveDateOld" sql-type="int" not-null="true"/>
+        </property>
+        <property name="type">
+            <column name="type" sql-type="int"/>
+        </property>
+        <property name="dopinfo">
+            <column name="dopinfo" sql-type="nvarchar(500)" length="500" not-null="true"/>
+        </property>
+        <property name="passportNumber">
+            <column name="PassportNumber" sql-type="nvarchar(12)" length="12" not-null="true"/>
+        </property>
+        <property name="adressStreet">
+            <column name="AdressStreet" sql-type="nvarchar(1000)" length="1000" not-null="true"/>
+        </property>
+        <property name="adressNumberHaus">
+            <column name="AdressNumberHaus" sql-type="nvarchar(6)" length="6" not-null="true"/>
+        </property>
+        <property name="adressNumberRoom">
+            <column name="AdressNumberRoom" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="indexAdress">
+            <column name="IndexAdress" sql-type="nvarchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="reklama">
+            <column name="Reklama" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="stars">
+            <column name="Stars" sql-type="int" not-null="true"/>
+        </property>
+        <property name="distribution">
+            <column name="Distribution" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="idKlientGroup">
+            <column name="IDKlientGroup" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="passportSeria">
+            <column name="PassportSeria" sql-type="nvarchar(30)" length="30" not-null="true"/>
+        </property>
+        <property name="passportOut">
+            <column name="PassportOut" sql-type="nvarchar(500)" length="500" not-null="true"/>
+        </property>
+        <property name="passportOutDate">
+            <column name="PassportOutDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="passportOutDateOk">
+            <column name="PassportOutDateOk" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="sPassportNumber">
+            <column name="SPassportNumber" sql-type="nvarchar(12)" length="12" not-null="true"/>
+        </property>
+        <property name="sPassportSeria">
+            <column name="SPassportSeria" sql-type="nvarchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="sPassportOut">
+            <column name="SPassportOut" sql-type="nvarchar(500)" length="500" not-null="true"/>
+        </property>
+        <property name="sPassportOutDate">
+            <column name="SPassportOutDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="sPassportOutDateOk">
+            <column name="SPassportOutDateOk" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="createdEvent">
+            <column name="CreatedEvent" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="idCallCreator">
+            <column name="IdCallCreator" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="algoritm">
+            <column name="Algoritm" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="isCompany">
+            <column name="IsCompany" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="birdaymem">
+            <column name="birdaymem" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="godenDoOk">
+            <column name="GodenDoOK" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="godenDo">
+            <column name="GodenDo" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="autoopen">
+            <column name="autoopen" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="psevdonim">
+            <column name="psevdonim" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="miniQuest">
+            <column name="MiniQuest" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="discountCard">
+            <column name="DiscountCard" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="noSms">
+            <column name="NoSMS" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="name2">
+            <column name="name2" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="famaly2">
+            <column name="famaly2" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="patronymic2">
+            <column name="patronymic2" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="lastDateCallIn">
+            <column name="LastDateCallIn" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="lastDateCallOut">
+            <column name="LastDateCallOut" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="lastDateContakt">
+            <column name="LastDateContakt" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="callInCount">
+            <column name="CallInCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="callOutCount">
+            <column name="CallOutCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="smsCount">
+            <column name="SMSCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="sPasportGodenDoReminder">
+            <column name="SPasportGodenDoReminder" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="filescount">
+            <column name="filescount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="taskCount">
+            <column name="TaskCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="buyingCount">
+            <column name="BuyingCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="grasdanstvo">
+            <column name="Grasdanstvo" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="country">
+            <column name="country" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="fatherAnketUnionId">
+            <column name="FatherAnketUnionID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="canDeleted">
+            <column name="CanDeleted" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="jobName">
+            <column name="JobName" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="jobTitle">
+            <column name="JobTitle" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="jobPosition">
+            <column name="JobPosition" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="directorCompany">
+            <column name="DirectorCompany" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="lastbuyingdte">
+            <column name="lastbuyingdte" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="bankName">
+            <column name="BankName" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="bik">
+            <column name="Bik" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="rs">
+            <column name="RS" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="ks">
+            <column name="KS" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="avatarData">
+            <column name="AvatarData" sql-type="image" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

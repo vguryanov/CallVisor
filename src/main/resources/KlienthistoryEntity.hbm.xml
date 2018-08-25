@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.mycompany.CallVisor.persistence.entities.KlienthistoryEntity" table="klienthistory"
+           schema="dbo" catalog="Aloho">
+        <id name="id">
+            <column name="id" sql-type="nvarchar(50)" length="50"/>
+        </id>
+        <property name="deleted">
+            <column name="Deleted" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="rimindebackdate">
+            <column name="rimindebackdate" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="rimindevojagedate">
+            <column name="rimindevojagedate" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="tourcomplete">
+            <column name="tourcomplete" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="touroperatormomey">
+            <column name="touroperatormomey" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="documentKlientComplete">
+            <column name="DocumentKlientComplete" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="inTour">
+            <column name="inTour" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="priority">
+            <column name="priority" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="outTour">
+            <column name="outTour" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="taskclose">
+            <column name="taskclose" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="taskclosemotiv">
+            <column name="taskclosemotiv" sql-type="nvarchar(400)" length="400" not-null="true"/>
+        </property>
+        <property name="idHotel">
+            <column name="idHotel" sql-type="nvarchar(300)" length="300" not-null="true"/>
+        </property>
+        <property name="idCountry">
+            <column name="idCountry" sql-type="nvarchar(300)" length="300" not-null="true"/>
+        </property>
+        <property name="createDate">
+            <column name="createDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="vojageDate">
+            <column name="vojageDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="backDate">
+            <column name="backDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="dayCount">
+            <column name="dayCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="places">
+            <column name="places" sql-type="int" not-null="true"/>
+        </property>
+        <property name="price">
+            <column name="price" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="totalPriceIn">
+            <column name="TotalPriceIn" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="dopInfo">
+            <column name="dopInfo" sql-type="nvarchar(4000)" length="4000" not-null="true"/>
+        </property>
+        <property name="idManager">
+            <column name="idManager" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="theme">
+            <column name="theme" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="dateTimeStart">
+            <column name="dateTimeStart" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="dateTimeEnd">
+            <column name="dateTimeEnd" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="idKlient">
+            <column name="idKlient" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="buyingDate">
+            <column name="BuyingDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="buyingOk">
+            <column name="BuyingOK" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="closeDate">
+            <column name="CloseDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="startcountry">
+            <column name="startcountry" sql-type="nvarchar(300)" length="300" not-null="true"/>
+        </property>
+        <property name="returncountry">
+            <column name="returncountry" sql-type="nvarchar(300)" length="300" not-null="true"/>
+        </property>
+        <property name="resort">
+            <column name="Resort" sql-type="nvarchar(300)" length="300" not-null="true"/>
+        </property>
+        <property name="dogovorNumber">
+            <column name="DogovorNumber" sql-type="nvarchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="ident">
+            <column name="ident" sql-type="int"/>
+        </property>
+        <property name="endMoneyDate">
+            <column name="EndMoneyDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="tourType">
+            <column name="TourType" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="idTaskGroup">
+            <column name="IdTaskGroup" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="state">
+            <column name="State" sql-type="nvarchar(20)" length="20" not-null="true"/>
+        </property>
+        <property name="idTaskOtherProgram">
+            <column name="IdTaskOtherProgram" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="children">
+            <column name="children" sql-type="int" not-null="true"/>
+        </property>
+        <property name="child1">
+            <column name="child1" sql-type="int" not-null="true"/>
+        </property>
+        <property name="child2">
+            <column name="child2" sql-type="int" not-null="true"/>
+        </property>
+        <property name="child3">
+            <column name="child3" sql-type="int" not-null="true"/>
+        </property>
+        <property name="child4">
+            <column name="child4" sql-type="int" not-null="true"/>
+        </property>
+        <property name="hotelCategory2">
+            <column name="hotelCategory2" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="hotelCategory3">
+            <column name="hotelCategory3" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="hotelCategory4">
+            <column name="hotelCategory4" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="hotelCategory5">
+            <column name="hotelCategory5" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="idfoodtype">
+            <column name="idfoodtype" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="extrafield1">
+            <column name="extrafield1" sql-type="nvarchar(300)" length="300" not-null="true"/>
+        </property>
+        <property name="errorState">
+            <column name="ErrorState" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="partnerManagerId">
+            <column name="PartnerManagerID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="reklama">
+            <column name="Reklama" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="hotelcategory1">
+            <column name="hotelcategory1" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="archive">
+            <column name="archive" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="taskCloseMotivState">
+            <column name="TaskCloseMotivState" sql-type="int" not-null="true"/>
+        </property>
+        <property name="discountCardId">
+            <column name="DiscountCardID" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="createdEvent">
+            <column name="CreatedEvent" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="avans">
+            <column name="avans" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="discountValue">
+            <column name="DiscountValue" sql-type="int" not-null="true"/>
+        </property>
+        <property name="otherSystemNumber">
+            <column name="OtherSystemNumber" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="isBooking">
+            <column name="IsBooking" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="currencyId">
+            <column name="CurrencyID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="isCurrency">
+            <column name="IsCurrency" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="price2">
+            <column name="Price2" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="totalPriceIn2">
+            <column name="TotalPriceIn2" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="percentCurrency">
+            <column name="PercentCurrency" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="tourCompleteDate">
+            <column name="TourCompleteDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="avans2">
+            <column name="avans2" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="avans2CurrencyValue">
+            <column name="Avans2CurrencyValue" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="companyId">
+            <column name="CompanyID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="location">
+            <column name="Location" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="isExport1C">
+            <column name="IsExport1C" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="returnedBying">
+            <column name="ReturnedBying" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="buyingType">
+            <column name="BuyingType" sql-type="int" not-null="true"/>
+        </property>
+        <property name="lastMoneyDate">
+            <column name="LastMoneyDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="buyingCount">
+            <column name="BuyingCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="callId">
+            <column name="CallID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="polsaNumber">
+            <column name="PolsaNumber" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="isPolsaUsed">
+            <column name="IsPolsaUsed" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="polsaAnnulation">
+            <column name="PolsaAnnulation" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="polsaUnnulation">
+            <column name="PolsaUnnulation" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="endBuyingId">
+            <column name="EndBuyingID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="endBuyingToid">
+            <column name="EndBuyingTOID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="endBuyingPolsaId">
+            <column name="EndBuyingPolsaID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="fatherTaskId">
+            <column name="FatherTaskID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="buyingTypeSt">
+            <column name="BuyingTypeSt" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="doplataRecalcType">
+            <column name="DoplataRecalcType" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="buyingCurrencyValue">
+            <column name="BuyingCurrencyValue" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+        <property name="buyingTypeStr">
+            <column name="BuyingTypeStr" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="poolId">
+            <column name="PoolID" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="currencyType">
+            <column name="CurrencyType" sql-type="int" not-null="true"/>
+        </property>
+        <property name="presentId">
+            <column name="PresentID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="spListId">
+            <column name="SPListID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="vosvratMoney">
+            <column name="VosvratMoney" sql-type="float" precision="-1" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

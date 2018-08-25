@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.mycompany.CallVisor.persistence.entities.CallEntity" table="Call" schema="dbo" catalog="Aloho">
+        <id name="id">
+            <column name="ID" sql-type="nvarchar(40)" length="40"/>
+        </id>
+        <property name="callDate">
+            <column name="CallDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="deleted">
+            <column name="Deleted" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="parentId">
+            <column name="ParentID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="action">
+            <column name="Action" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="idManager">
+            <column name="idManager" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="rec">
+            <column name="Rec" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="dopInfo">
+            <column name="DopInfo" sql-type="nvarchar(200)" length="200" not-null="true"/>
+        </property>
+        <property name="sourceNumber">
+            <column name="SourceNumber" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="managerIdController">
+            <column name="ManagerIDController" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="idKlient">
+            <column name="IDKlient" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="duration">
+            <column name="Duration" sql-type="int" not-null="true"/>
+        </property>
+        <property name="isPriorityUp">
+            <column name="IsPriorityUp" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="isTransfer">
+            <column name="IsTransfer" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="wasListened">
+            <column name="WasListened" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="transferToManagerId">
+            <column name="TransferToManagerID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="isWarning">
+            <column name="IsWarning" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="isFavorit">
+            <column name="IsFavorit" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="honorificNameCount">
+            <column name="HonorificNameCount" sql-type="int" not-null="true"/>
+        </property>
+        <property name="isListen">
+            <column name="IsListen" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="noCounter">
+            <column name="NoCounter" sql-type="int" not-null="true"/>
+        </property>
+        <property name="anketDataError">
+            <column name="AnketDataError" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="extraInfo">
+            <column name="ExtraInfo" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="listenDate">
+            <column name="ListenDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="startCallDate">
+            <column name="StartCallDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="errorKlientHistoryId">
+            <column name="ErrorKlientHistoryID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="ident">
+            <column name="ident" sql-type="int"/>
+        </property>
+        <property name="cause">
+            <column name="Cause" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="badWordCounter">
+            <column name="BadWordCounter" sql-type="int" not-null="true"/>
+        </property>
+        <property name="signature">
+            <column name="Signature" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="location">
+            <column name="Location" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="missingAnswerState">
+            <column name="MissingAnswerState" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="missingAnswerCallId">
+            <column name="MissingAnswerCallID" sql-type="nvarchar(50)" length="50" not-null="true"/>
+        </property>
+        <property name="isoffline">
+            <column name="isoffline" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="callWavUrl">
+            <column name="CallWavUrl" sql-type="nvarchar(400)" length="400" not-null="true"/>
+        </property>
+        <property name="manualCompletePayment">
+            <column name="ManualCompletePayment" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="otrabotanDate">
+            <column name="OtrabotanDate" sql-type="datetime" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

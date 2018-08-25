@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.example.mycompany.CallVisor.persistence.entities.TelephonNumberEntity" table="TelephonNumber" schema="dbo"
+           catalog="Aloho">
+        <id name="number">
+            <column name="Number" sql-type="nvarchar(30)" length="30"/>
+        </id>
+        <property name="id">
+            <column name="ID" sql-type="nvarchar(40)" length="40"/>
+        </property>
+        <property name="parentId">
+            <column name="ParentID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="createDate">
+            <column name="CreateDate" sql-type="datetime" not-null="true"/>
+        </property>
+        <property name="deleted">
+            <column name="Deleted" sql-type="bit" not-null="true"/>
+        </property>
+        <property name="type">
+            <column name="Type" sql-type="int" not-null="true"/>
+        </property>
+        <property name="dopInfo">
+            <column name="DopInfo" sql-type="nvarchar(100)" length="100" not-null="true"/>
+        </property>
+        <property name="typeNumberId">
+            <column name="TypeNumberID" sql-type="nvarchar(40)" length="40" not-null="true"/>
+        </property>
+        <property name="noSms">
+            <column name="NoSMS" sql-type="bit" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>
