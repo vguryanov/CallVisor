@@ -72,6 +72,16 @@ public class SQLServerHandler {
         return result;
     }
 
+    public ManagerEntity getManagerByLogin(String login) {
+        String hqlQuery = "FROM ManagerEntity WHERE login = :login";
+
+        Query query = getSession().createQuery(hqlQuery);
+        query.setParameter("login", login);
+
+        List<ManagerEntity> result = getQueryResultList(query);
+        return result.size() > 0 ? result.get(0) : null;
+    }
+
     public KlientinfoEntity getClientById(String id) {
         String hqlQuery = "FROM KlientinfoEntity WHERE id = :id";
 
