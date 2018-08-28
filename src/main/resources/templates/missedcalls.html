@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script th:inline="javascript">
+        function toggleMCVS() {
+            var message = /*[[${mcvsIsRunning}]]*/ 'default';
+            var node = document.getElementById("toggleBtn").firstChild;
+
+            if (message) node.data="stop";
+            else node.data="launch";
+        }
+    </script>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body onload="toggleMCVS()">
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a class="active" href="missedcalls">Missed Calls</a></li>
+    <li><a href="log">Logs</a></li>
+</ul>
+
+<a href="/missedcalls/toggle" class="button" id="toggleBtn"> </a>
+
+</body>
+</html>
