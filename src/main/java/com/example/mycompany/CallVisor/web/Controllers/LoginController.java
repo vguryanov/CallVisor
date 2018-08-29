@@ -41,13 +41,21 @@ public class LoginController {
             logger.trace("Successful authorization attempt from IP " + getClientIp(req)
                     + ". Login: " + login
                     + ". Device type: " + (isClientDeviceMobile(req) ? "mobile phone" : "PC"));
-            resp.sendRedirect(req.getContextPath() + "/log");
+            resp.sendRedirect(req.getContextPath() + "/");
         } else {
             logger.trace("Failed authorization attempt from IP " + getClientIp(req)
                     + ". Login: " + login
                     + ". Device type: " + (isClientDeviceMobile(req) ? "mobile phone" : "PC"));
             resp.sendRedirect("/login?error");
         }
+    }
+
+    @GetMapping("/logout")
+    public void logout(HttpServletRequest request, HttpServletResponse resp) throws IOException {
+        logger.trace("Authorization page entry from IP " + getClientIp(request)
+                + ". Device type: " + (isClientDeviceMobile(request) ? "mobile phone" : "PC"));
+        request.getSession().setAttribute("login", null);
+        resp.sendRedirect("/login?");
     }
 
     private static String getClientIp(HttpServletRequest request) {
