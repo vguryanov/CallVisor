@@ -15,7 +15,7 @@ import java.nio.charset.StandardCharsets;
 @RestController
 public class LogController {
     @RequestMapping("/log")
-    public String greeting() {
+    public String log() {
         FileSystemResource resource = new FileSystemResource(LogUtil.getLogFilePath());
         try {
             return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);

@@ -1,5 +1,7 @@
 package com.example.mycompany.CallVisor.logic.util;
 
+import org.apache.log4j.Logger;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,6 +16,7 @@ public class PropertiesManager {
     private static PropertiesManager INSTANCE;
     private static final String propsFilePath = "C:\\ProgramData\\CallVisor\\util.properties";
     private boolean isLoaded = false;
+    private static Logger logger = Logger.getLogger(PropertiesManager.class);
 
     private PropertiesManager() {
         init();
@@ -33,7 +36,7 @@ public class PropertiesManager {
             properties.loadFromXML(input);
             isLoaded = true;
         } catch (IOException ex) {
-            ex.printStackTrace();
+            logger.fatal("Cannot load util.properties", ex);
         }
     }
 

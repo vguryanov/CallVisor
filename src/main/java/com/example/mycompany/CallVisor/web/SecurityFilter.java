@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by User2 on 26.08.2018.
  */
-public class CustomFilter extends GenericFilterBean {
+public class SecurityFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
