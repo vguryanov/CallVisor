@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CallVisor</title>
+    <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        li {
+            float: left;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li><a class="active" href="/">Home</a></li>
+    <li><a href="missedcalls">Missed Calls</a></li>
+    <li><a href="log">Logs</a></li>
+    <li style="float:right"><a href="logout">Logout</a></li>
+</ul>
+
+</body>
+</html>
