@@ -123,6 +123,34 @@ public class SQLServerHandler {
         return result.size() > 0 ? result.get(0) : null;
     }
 
+    public Long getMissedCallsCountForDay(Date date) {
+        Date endDate = new Date(date.getTime());
+        endDate.setDate(date.getDate() + 1);
+        return getCallsCountForPeriodWithStatus(date, endDate, CallEntity.Status.MISSED);
+    }
+
+    public Long getIncomingCallsCountForDay(Date date) {
+        Date endDate = new Date(date.getTime());
+        endDate.setDate(date.getDate() + 1);
+        return getCallsCountForPeriodWithStatus(date, endDate, CallEntity.Status.INCOMING);
+    }
+
+    private Long getCallsCountForPeriodWithStatus(Date start, Date end, CallEntity.Status status) {
+        List<Long> result = new LinkedList<>();
+
+        String hqlQuery = "SELECT COUNT(*) FROM CallEntity " +
+                "WHERE callDate BETWEEN :startDate AND :endDate " +
+                "AND action like :action";
+
+        Query query = getSession().createQuery(hqlQuery);
+        query.setParameter("startDate", start);
+        query.setParameter("endDate", end);
+        query.setParameter("action", status.getValue());
+
+        result.addAll(getQueryResultList(query));
+        return result.get(0);
+    }
+
     public List<CallEntity> getMissedCallsAfter(Date date) {
         List<CallEntity> result = new LinkedList<>();
 
@@ -150,9 +178,17 @@ public class SQLServerHandler {
         Query query = getSession().createQuery(hqlQuery);
         query.setParameter("startDate", startDate);
         query.setParameter("endDate", endDate);
-        query.setParameter("action", "%пропущен2%");
+        query.setParameter("action", CallEntity.Status.MISSED.getValue());
 
         result.addAll(getQueryResultList(query));
         return result;
+    }
+
+    public static void main(String[] args) {
+        Date date = new Date(2018 - 1900, 7, 29, 0, 0);
+        System.out.println(
+                getInstance().getIncomingCallsCountForDay(date)
+                        + "\n" + getInstance().getMissedCallsCountForDay(date));
+        getInstance().getSession().close();
     }
 }

@@ -48,6 +48,20 @@ public class CallEntity {
     private Boolean manualCompletePayment;
     private Timestamp otrabotanDate;
 
+    public enum Status {
+        INCOMING("разговор"), OUTGOING("исходящий"), MISSED("пропущен2");
+
+        private String value;
+
+        Status(String s) {
+            this.value = s;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
+
     @Id
     @Column(name = "ID", nullable = false, length = 40)
     public String getId() {
