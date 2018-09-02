@@ -1,9 +1,11 @@
 package com.example.mycompany.CallVisor.persistence;
 
 import com.example.mycompany.CallVisor.logic.util.PropertiesManager;
+import com.example.mycompany.CallVisor.logic.util.StatisticsProvider;
 import com.example.mycompany.CallVisor.persistence.entities.*;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -54,12 +56,12 @@ public class SQLServerHandler {
         return session;
     }
 
-    private List getQueryResultList(Query query) {
+    private List getQueryResultList(org.hibernate.Query query) {
         List result = null;
         while (result == null) {
             try {
                 logger.trace("Starting query execution: " + query.getQueryString());
-                result = query.list();
+                result = query.getResultList();
             } catch (PersistenceException e) {
                 logger.error("Cannot execute query: " + query.getQueryString(), e);
                 try {
@@ -151,6 +153,31 @@ public class SQLServerHandler {
         return result.get(0);
     }
 
+    public List<Object[]> getCallCountStatistic(Date start, Date end) {
+        String sql =
+                "        SELECT " +
+                        "   DATEPART(YEAR, CallDate) AS 'Year', " +
+                        "   DATEPART(MONTH, CallDate) AS 'Month', " +
+                        "   DATEPART(DAY, CallDate) AS 'Day', " +
+                        "   SUM(case when Action like 'разговор' then 1 else 0 end) Incoming, " +
+                        "   SUM(case when Action like 'пропущен2' then 1 else 0 end) Missed, " +
+                        "   SUM(case when CreateDate=CallDate and  Action like 'пропущен2' then 1 else 0 end) New " +
+                        "FROM (" +
+                        "   SELECT * " +
+                        "   FROM Call " +
+                        "   WHERE calldate between :startDate and :endDate " +
+                        ")src " +
+                        "INNER JOIN TelephonNumber t on t.ID=src.ParentID " +
+                        "GROUP BY DATEPART(DAY, CallDate), DATEPART(MONTH, CallDate), DATEPART(YEAR, CallDate) " +
+                        "ORDER BY 'Year', 'Month', 'Day'";
+        SQLQuery query = getSession().createSQLQuery(sql);
+
+        query.setParameter("startDate", start);
+        query.setParameter("endDate", end);
+
+        return getQueryResultList(query);
+    }
+
     public List<CallEntity> getMissedCallsAfter(Date date) {
         List<CallEntity> result = new LinkedList<>();
 
@@ -182,13 +209,5 @@ public class SQLServerHandler {
 
         result.addAll(getQueryResultList(query));
         return result;
-    }
-
-    public static void main(String[] args) {
-        Date date = new Date(2018 - 1900, 7, 29, 0, 0);
-        System.out.println(
-                getInstance().getIncomingCallsCountForDay(date)
-                        + "\n" + getInstance().getMissedCallsCountForDay(date));
-        getInstance().getSession().close();
     }
 }
