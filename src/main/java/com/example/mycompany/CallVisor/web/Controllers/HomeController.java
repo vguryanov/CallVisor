@@ -1,6 +1,7 @@
 package com.example.mycompany.CallVisor.web.Controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class HomeController {
     @GetMapping("/")
-    public String index(HttpServletRequest req) {
+    public String index(HttpServletRequest req, Model model) {
         return "home";
     }
 }
