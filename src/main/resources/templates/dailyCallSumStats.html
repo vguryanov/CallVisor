@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:margin-left="http://www.w3.org/1999/xhtml">
+<html>
+<head>
+    <title>CallVisor</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+            /*position: fixed;*/
+            top: 0;
+            width: 100%;
+        }
+
+        li {
+            float: left;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+        }
+
+        li a, .dropbtn {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover, .dropdown:hover .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        li a:hover:not(.active) {
+            background-color: #4CAF50;
+        }
+
+        .active {
+            background-color: #4CAF50;
+        }
+
+        li.dropdown {
+            background-color: #4CAF50;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: rgb(139, 137, 139);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        legend {
+            /*background-color: #4CAF50;*/
+            color: #333;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            padding: 3px 6px;
+        }
+
+        .output {
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+        }
+
+        input {
+            margin: .4rem;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+        }
+
+        label {
+            /*display: inline-block;*/
+            text-align: right;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+            width: 20%;
+        }
+
+        form {
+            margin-left: 20px;
+            font-family: "Trebuchet MS", Helvetica, sans-serif;
+        }
+
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script th:inline="javascript" type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var diagData = [
+                ['Дата', 'Входящих', 'из них пропущенных', 'из них от новых клиентов']
+            ];
+
+            [# th:each="d : ${callCountStats}"]
+            diagData.push(
+                [ [[${d.date}]], [[${d.allIncoming}]], [[${d.missed}]], [[${d.missedFromNewClient}]] ]
+            );
+            [/]
+
+            var data = google.visualization.arrayToDataTable(diagData);
+
+            var options = {
+                title: 'Соотношение входящих и пропущенных звонков',
+                hAxis: {title: 'Дата',  titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0},
+                width: 1600,
+                height: 700
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="missedcalls">Missed Calls</a></li>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">Statistics</a>
+        <div class="dropdown-content">
+            <a href="dailyCallSumStats">Соотношение вх/пр</a>
+            <a href="missedProcStats">Скорость обработки</a>
+        </div>
+    </li>
+    <li><a href="log">Logs</a></li>
+    <li style="float:right"><a href="logout">Logout</a></li>
+</ul>
+
+<br>
+<form th:action="@{/dailyCallSumStats}" method="get">
+    Choose dates:
+    <div>
+        <label for="start">Start</label>
+        <input type="date" id="start" name="dateStartInp"
+               th:attr="value=${startDate}"
+               min="2010-01-01"/>
+
+        <label for="end">End</label>
+        <input type="date" id="end" name="dateEndInp"
+               th:attr="value=${endDate}"
+               min="2010-01-01"/>
+
+        <input type="submit" value="Load">
+    </div>
+</form>
+
+<div id="chart_div"></div>
+
+</body>
+</html>

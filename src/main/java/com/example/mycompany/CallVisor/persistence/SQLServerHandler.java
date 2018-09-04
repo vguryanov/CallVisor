@@ -1,7 +1,6 @@
 package com.example.mycompany.CallVisor.persistence;
 
 import com.example.mycompany.CallVisor.logic.util.PropertiesManager;
-import com.example.mycompany.CallVisor.logic.util.StatisticsProvider;
 import com.example.mycompany.CallVisor.persistence.entities.*;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
@@ -153,7 +152,7 @@ public class SQLServerHandler {
         return result.get(0);
     }
 
-    public List<Object[]> getCallCountStatistic(Date start, Date end) {
+    public List<Object[]> getDailyCallSumStatsForPeriod(Date start, Date end) {
         String sql =
                 "        SELECT " +
                         "   DATEPART(YEAR, CallDate) AS 'Year', " +
@@ -170,6 +169,76 @@ public class SQLServerHandler {
                         "INNER JOIN TelephonNumber t on t.ID=src.ParentID " +
                         "GROUP BY DATEPART(DAY, CallDate), DATEPART(MONTH, CallDate), DATEPART(YEAR, CallDate) " +
                         "ORDER BY 'Year', 'Month', 'Day'";
+        SQLQuery query = getSession().createSQLQuery(sql);
+
+        query.setParameter("startDate", start);
+        query.setParameter("endDate", end);
+
+        return getQueryResultList(query);
+    }
+
+    public List<Object[]> getDailyAverageMissedCallProcSpeedStatistic(Date start, Date end) {
+        String sql =
+                "        SELECT " +
+                        "   DATEPART(YEAR, CallDate) AS 'Year', " +
+                        "   DATEPART(MONTH, CallDate) AS 'Month', " +
+                        "   DATEPART(DAY, CallDate) AS 'Day', " +
+                        "AVG(DATEDIFF(SECOND, CallDate, OtrabotanDate)) as Diff " +
+                        "FROM Call " +
+                        "WHERE calldate BETWEEN :startDate and :endDate " +
+                        "AND Action like 'пропущен2' " +
+                        "AND DATEPART(hour, CallDate)>=10 " +
+                        "AND DATEPART(hour, CallDate)<21 " +
+                        "GROUP BY " +
+                        "   DATEPART(DAY, CallDate), " +
+                        "   DATEPART(MONTH, CallDate), " +
+                        "   DATEPART(YEAR, CallDate) " +
+                        "ORDER BY " +
+                        "   'Year', " +
+                        "   'Month', " +
+                        "   'Day' ";
+        SQLQuery query = getSession().createSQLQuery(sql);
+
+        query.setParameter("startDate", start);
+        query.setParameter("endDate", end);
+
+        return getQueryResultList(query);
+    }
+
+    public List<Object[]> getMissedCallsProcStatistics(Date start, Date end) {
+        String sql =
+                "        SELECT " +
+                        "   DATEPART(YEAR, CallDate) AS 'Year', " +
+                        "   DATEPART(MONTH, CallDate) AS 'Month', " +
+                        "   DATEPART(DAY, CallDate) AS 'Day', " +
+                        "   SUM(case when secDiff=0 then 1 else 0 end) notProcessed, " +
+                        "   SUM(case when minDiff<6 AND secDiff>0 then 1 else 0 end) fiveMins, " +
+                        "   SUM(case when minDiff<16 AND minDiff>=6 then 1 else 0 end) fiveToFifteenMins, " +
+                        "   SUM(case when minDiff<31 AND minDiff>=16 then 1 else 0 end) fifteenToThirtyMins, " +
+                        "   SUM(case when minDiff<61 AND minDiff>=31 then 1 else 0 end) thirtyMinsToOneHour, " +
+                        "   SUM(case when minDiff<121 AND minDiff>=61 then 1 else 0 end) oneToTwoHours, " +
+                        "   SUM(case when minDiff<241 AND minDiff>=121 then 1 else 0 end) twoToFourHours, " +
+                        "   SUM(case when minDiff<1441 AND minDiff>=241 then 1 else 0 end) fourHoursToOneDay, " +
+                        "   SUM(case when minDiff>=1441 then 1 else 0 end) moreThanOneDay " +
+                        "FROM( " +
+                        "   SELECT " +
+                        "       CallDate, " +
+                        "       OtrabotanDate, " +
+                        "       DATEDIFF(SECOND, CallDate, OtrabotanDate) AS secDiff, " +
+                        "       DATEDIFF(MINUTE, CallDate, OtrabotanDate) AS minDiff " +
+                        "   FROM Call " +
+                        "   WHERE calldate BETWEEN :startDate and :endDate " +
+                        "   AND Action like 'пропущен2' " +
+                        "   AND DATEPART(hour, CallDate)>=10 " +
+                        "   AND DATEPART(hour, CallDate)<21)src " +
+                        "GROUP BY " +
+                        "   DATEPART(DAY, CallDate), " +
+                        "   DATEPART(MONTH, CallDate), " +
+                        "   DATEPART(YEAR, CallDate) " +
+                        "ORDER BY " +
+                        "   'Year', " +
+                        "   'Month', " +
+                        "   'Day'";
         SQLQuery query = getSession().createSQLQuery(sql);
 
         query.setParameter("startDate", start);

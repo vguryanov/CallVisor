@@ -20,7 +20,7 @@ import java.util.List;
 public class StatisticsController {
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-    @GetMapping("/statistics")
+    @GetMapping("/dailyCallSumStats")
     public String getStatistics(HttpServletRequest req, Model model) {
         String dateStartInp = req.getParameter("dateStartInp");
         String dateEndInp = req.getParameter("dateEndInp");
@@ -41,10 +41,43 @@ public class StatisticsController {
         }
 
         end.setTime(end.getTime() + 24 * 3600000 - 1);
-        List<StatisticsProvider.DayCallsStats> callsStats = StatisticsProvider.getCallCountStatisticsForPeriod(start, end);
+        List<StatisticsProvider.DayCallsStats> callsStats = StatisticsProvider.getDailyCallSumStatsForPeriod(start, end);
         model.addAttribute("callCountStats", callsStats);
         req.setAttribute("startDate", format.format(start));
         req.setAttribute("endDate", format.format(end));
-        return "statistics";
+        return "dailyCallSumStats";
+    }
+
+    @GetMapping("/missedProcStats")
+    public String getMissedProcStats(HttpServletRequest req, Model model) {
+        String dateStartInp = req.getParameter("dateStartInp");
+        String dateEndInp = req.getParameter("dateEndInp");
+
+        Date start = null;
+        Date end = null;
+
+        try {
+            start = format.parse(dateStartInp);
+            end = format.parse(dateEndInp);
+        } catch (ParseException | NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        if (start == null || dateStartInp.equals("") || end == null || dateEndInp.equals("")) {
+            end = DateUtils.truncate(new Date(), Calendar.DATE);
+            start = new Date(end.getTime() - 7 * 24 * 3600000);
+        }
+
+        end.setTime(end.getTime() + 24 * 3600000 - 1);
+
+        List<Object[]> callsStats = StatisticsProvider.getMissedProcessStatisticsForPeriod(start, end);
+        model.addAttribute("callCountStats", callsStats);
+
+        List<Object[]> callsStats2 = StatisticsProvider.getDailyAverageMissedCallProcSpeedStatistic(start, end);
+        model.addAttribute("callCountStats2", callsStats2);
+
+        req.setAttribute("startDate", format.format(start));
+        req.setAttribute("endDate", format.format(end));
+        return "missedProcStats";
     }
 }

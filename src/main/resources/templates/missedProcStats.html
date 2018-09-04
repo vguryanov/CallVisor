@@ -106,31 +106,72 @@
     </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script th:inline="javascript" type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages': ['line']});
         google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawChart2);
 
         function drawChart() {
-            var diagData = [
-                ['Дата', 'Входящих', 'из них пропущенных', 'из них от новых клиентов']
-            ];
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Дата');
+            data.addColumn('number', 'до 5 минут');
+            data.addColumn('number', '5-15 минут');
+            data.addColumn('number', '15-30 минут');
+            data.addColumn('number', '30-60 минут');
+            data.addColumn('number', '1-2 часа');
+            data.addColumn('number', '2-4 часа');
+            data.addColumn('number', 'от 4 ч. до 1 дня');
+            data.addColumn('number', 'более 1 дня');
+            data.addColumn('number', 'не обработан');
 
-            [# th:each="d : ${callCountStats}"]
-            diagData.push(
-                [ [[${d.date}]], [[${d.allIncoming}]], [[${d.missed}]], [[${d.missedFromNewClient}]] ]
+            /*<![CDATA[*/
+
+            var diagData = /*[[${callCountStats}]]*/ 'default';
+
+            /*]]>*/
+
+            data.addRows(
+                diagData
             );
-            [/]
-
-            var data = google.visualization.arrayToDataTable(diagData);
 
             var options = {
-                title: 'Соотношение входящих и пропущенных звонков',
-                hAxis: {title: 'Дата',  titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0},
-                height: 700
+                chart: {
+                    title: 'Динамика количества пропущенных звонков с учетом скорости обработки',
+                    subtitle: 'Учитываются пропущенные звонки, поступившие в рабочее время (10:00-21:00)'
+                },
+                width: 1400,
+                height: 500
             };
 
-            var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
+            var chart = new google.charts.Line(document.getElementById('chart_div'));
+
+            chart.draw(data, google.charts.Line.convertOptions(options));
+        }
+        function drawChart2() {
+            var data2 = new google.visualization.DataTable();
+            data2.addColumn('string', 'Дата');
+            data2.addColumn('number', 'Скорость в часах');
+
+            /*<![CDATA[*/
+
+            var diagData2 = /*[[${callCountStats2}]]*/ 'default';
+
+            /*]]>*/
+
+            data2.addRows(
+                diagData2
+            );
+
+            var options = {
+                chart: {
+                    title: 'Средняя скорость обработки пропущенных звонков',
+                    subtitle: 'Учитываются пропущенные звонки, поступившие в рабочее время (10:00-21:00)'
+                },
+                width: 1400,
+                height: 500
+            };
+
+            var chart2 = new google.charts.Line(document.getElementById('chart_div2'));
+            chart2.draw(data2, google.charts.Line.convertOptions(options));
         }
     </script>
 </head>
@@ -142,8 +183,8 @@
     <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Statistics</a>
         <div class="dropdown-content">
-            <a href="statistics">Link 1</a>
-            <a href="statistics">Link 2</a>
+            <a href="dailyCallSumStats">Соотношение вх/пр</a>
+            <a href="missedProcStats">Скорость обработки</a>
         </div>
     </li>
     <li><a href="log">Logs</a></li>
@@ -151,7 +192,7 @@
 </ul>
 
 <br>
-<form th:action="@{/statistics}" method="get">
+<form th:action="@{/missedProcStats}" method="get">
     Choose dates:
     <div>
         <label for="start">Start</label>
@@ -168,7 +209,8 @@
     </div>
 </form>
 
-<div id="chart_div" style="width: 100%; height: 500px;"></div>
+<div id="chart_div" style="margin-left: 20px; margin-top: 30px"></div>
+<div id="chart_div2" style="margin-left: 20px; margin-top: 60px"></div>
 
 </body>
 </html>
