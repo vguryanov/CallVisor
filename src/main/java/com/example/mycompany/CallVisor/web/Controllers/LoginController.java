@@ -2,6 +2,7 @@ package com.example.mycompany.CallVisor.web.Controllers;
 
 import com.example.mycompany.CallVisor.persistence.SQLServerHandler;
 import com.example.mycompany.CallVisor.persistence.entities.ManagerEntity;
+import com.example.mycompany.CallVisor.web.security.WebSecurityConfig;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import java.io.IOException;
 
 @Controller
 public class LoginController {
+    private static SQLServerHandler sqlHandler = SQLServerHandler.getInstance();
     private static Logger logger = Logger.getLogger(LoginController.class);
 
     @GetMapping("/login")
@@ -34,9 +36,11 @@ public class LoginController {
         String login = req.getParameter("username");
         String password = req.getParameter("password");
         if (isAuthDataValid(login, password)) {
+            int admintype = sqlHandler.getManagerByLogin(login).getAdmintype();
             HttpSession session = req.getSession();
             synchronized (session) {
                 session.setAttribute("login", login);
+                session.setAttribute("role", WebSecurityConfig.Role.getRole(admintype));
             }
             logger.trace("Successful authorization attempt from IP " + getClientIp(req)
                     + ". Login: " + login
@@ -73,12 +77,12 @@ public class LoginController {
         return req.getHeader("User-Agent").contains("Mobile");
     }
 
-    private static String hash(String s) {
+    public static String hash(String s) {
         return DigestUtils.sha256Hex(s);
     }
 
     private boolean isAuthDataValid(String login, String password) {
-        ManagerEntity managerEntity = SQLServerHandler.getInstance().getManagerByLogin(login);
+        ManagerEntity managerEntity = sqlHandler.getManagerByLogin(login);
         return managerEntity != null && managerEntity.getDopInfo().equals(hash(password));
     }
 }

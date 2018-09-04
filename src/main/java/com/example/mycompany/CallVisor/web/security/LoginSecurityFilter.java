@@ -1,4 +1,4 @@
-package com.example.mycompany.CallVisor.web;
+package com.example.mycompany.CallVisor.web.security;
 
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by User2 on 26.08.2018.
  */
-public class SecurityFilter extends GenericFilterBean {
+public class LoginSecurityFilter extends GenericFilterBean {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
