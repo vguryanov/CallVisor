@@ -1,7 +1,7 @@
 package com.example.mycompany.CallVisor.logic;
 
 import com.example.mycompany.CallVisor.logic.util.PropertiesManager;
-import com.example.mycompany.CallVisor.persistence.CallDescription;
+import com.example.mycompany.CallVisor.logic.util.CallDescription;
 import com.example.mycompany.CallVisor.persistence.entities.CallEntity;
 import com.example.mycompany.CallVisor.persistence.SQLServerHandler;
 import org.apache.log4j.Logger;

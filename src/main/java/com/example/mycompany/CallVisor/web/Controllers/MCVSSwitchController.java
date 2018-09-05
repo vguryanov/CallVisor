@@ -13,20 +13,20 @@ import java.io.IOException;
  * Created by User2 on 26.08.2018.
  */
 @Controller
-public class MissedCallsController {
-    private static Logger logger = Logger.getLogger(MissedCallsController.class);
+public class MCVSSwitchController {
+    private static Logger logger = Logger.getLogger(MCVSSwitchController.class);
 
-    @GetMapping("/missedcalls")
+    @GetMapping("/mcvsSwitcher")
     public String missedCalls(HttpServletRequest req) {
         req.setAttribute("mcvsIsRunning", MissedCallVisorService.isRunning());
-        return "missedcalls";
+        return "mcvsSwitcher";
     }
 
-    @GetMapping("/missedcalls/toggle")
+    @GetMapping("/mcvsSwitcher/toggle")
     public void toggle(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         logger.trace("MCVS status toggle by user " + req.getSession().getAttribute("login"));
         if (MissedCallVisorService.isRunning()) MissedCallVisorService.pause();
         else MissedCallVisorService.startup();
-        resp.sendRedirect("/missedcalls");
+        resp.sendRedirect("/mcvsSwitcher");
     }
 }

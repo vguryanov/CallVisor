@@ -1,4 +1,4 @@
-package com.example.mycompany.CallVisor.web.security;
+package com.example.mycompany.CallVisor.web.security.filters;
 
 import org.springframework.web.filter.GenericFilterBean;
 

@@ -1,4 +1,4 @@
-package com.example.mycompany.CallVisor.web.security;
+package com.example.mycompany.CallVisor.web.security.filters;
 
 import org.springframework.web.filter.GenericFilterBean;
 
@@ -22,7 +22,7 @@ public class RoleSecurityFilter extends GenericFilterBean {
     static {
         accessRegistry.put(
                 Role.USER,
-                Arrays.asList("/statistics", "/missedProcStats")
+                Arrays.asList("/dailyCallSumStats", "/missedProcStats")
         );
     }
 
@@ -31,8 +31,6 @@ public class RoleSecurityFilter extends GenericFilterBean {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         Role role = (Role) req.getSession().getAttribute("role");
         String servletPath = req.getServletPath();
-        System.out.println(servletPath);
-
         if (servletPath.equals("/login")
                 || servletPath.equals("/")
                 || servletPath.equals("/error")
@@ -42,6 +40,6 @@ public class RoleSecurityFilter extends GenericFilterBean {
                 || accessRegistry.get(role).contains(servletPath))
             filterChain.doFilter(req, servletResponse);
         else
-            ((HttpServletResponse) servletResponse).sendRedirect(req.getContextPath() + "/");
+            ((HttpServletResponse) servletResponse).sendRedirect(req.getContextPath() + "/error");
     }
 }

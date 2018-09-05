@@ -1,6 +1,6 @@
-package com.example.mycompany.CallVisor.persistence;
+package com.example.mycompany.CallVisor.logic.util;
 
-import com.example.mycompany.CallVisor.logic.EmailHandler;
+import com.example.mycompany.CallVisor.persistence.SQLServerHandler;
 import com.example.mycompany.CallVisor.persistence.entities.*;
 
 import java.util.Date;
@@ -11,6 +11,7 @@ import java.util.Date;
 public class CallDescription {
     private SQLServerHandler dbHandler;
     private String clientPhoneNumber, sourceNumber, clientName, recipientManagerName;
+    private StatisticsProvider.DayCallsStats stats;
 
     public CallDescription(CallEntity callEntity) {
         dbHandler = SQLServerHandler.getInstance();
@@ -33,6 +34,7 @@ public class CallDescription {
                 recipientManagerName = m.getFio();
             }
         }
+        this.stats = StatisticsProvider.getDailyCallSumStatsForDate(new Date());
     }
 
     public String getClientPhoneNumber() {
@@ -50,6 +52,10 @@ public class CallDescription {
     @Override
     public String toString() {
         return getClientName() + " пытался(-лась) позвонить с номера " + getClientPhoneNumber() + " на номер " + sourceNumber + "." + System.lineSeparator()
-                + (recipientManagerName != null ? "Сотрудник, которому предположительно был адресован звонок - " + getRecipientManagerName() + "." : "");
+                + (recipientManagerName != null ? "Сотрудник, которому предположительно был адресован звонок - " + getRecipientManagerName() + "." : "") + System.lineSeparator()
+                + System.lineSeparator()
+                + "Всего входящих за сегодня: " + stats.getAllIncoming()
+                + "; из них пропущено: " + stats.getMissed()
+                + "; из них от новых клиентов: " + stats.getMissedFromNewClient() + ".";
     }
 }
