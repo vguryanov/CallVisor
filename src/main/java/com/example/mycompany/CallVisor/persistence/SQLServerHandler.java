@@ -57,18 +57,11 @@ public class SQLServerHandler {
 
     private List getQueryResultList(org.hibernate.Query query) {
         List result = null;
-        while (result == null) {
-            try {
-                logger.trace("Starting query execution: " + query.getQueryString());
-                result = query.getResultList();
-            } catch (PersistenceException e) {
-                logger.error("Cannot execute query: " + query.getQueryString(), e);
-                try {
-                    Thread.currentThread().sleep(1000);
-                } catch (InterruptedException e1) {
-                    e1.printStackTrace();
-                }
-            }
+        try {
+            logger.trace("Starting query execution: " + query.getQueryString());
+            result = query.getResultList();
+        } catch (PersistenceException e) {
+            logger.error("Cannot execute query: " + query.getQueryString(), e);
         }
         return result;
     }

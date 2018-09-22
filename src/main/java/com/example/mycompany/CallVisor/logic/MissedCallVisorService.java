@@ -72,7 +72,7 @@ public class MissedCallVisorService extends Thread {
             try {
                 Thread.currentThread().sleep(30 * 1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error("InterruptedException during MCVS timeout", e);
             }
         }
     }
