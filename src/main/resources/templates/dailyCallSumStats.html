@@ -99,14 +99,15 @@
         }
 
         form {
-            margin-left: 20px;
+            margin-left: 5%;
+            margin-top: 1%;
             font-family: "Trebuchet MS", Helvetica, sans-serif;
         }
 
     </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script th:inline="javascript" type="text/javascript">
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
@@ -124,15 +125,17 @@
 
             var options = {
                 title: 'Соотношение входящих и пропущенных звонков',
-                hAxis: {title: 'Дата',  titleTextStyle: {color: '#333'}},
-                vAxis: {minValue: 0},
-                width: 1600,
-                height: 700
+                hAxis: {title: 'Дата', titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0}
             };
 
             var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
             chart.draw(data, options);
         }
+
+        window.addEventListener('resize', function () {
+            drawChart();
+        }, false);
     </script>
 </head>
 <body>
@@ -169,7 +172,7 @@
     </div>
 </form>
 
-<div id="chart_div"></div>
+<div id="chart_div" style="height: 650px; width: 100%; margin-left: -70px"></div>
 
 </body>
 </html>

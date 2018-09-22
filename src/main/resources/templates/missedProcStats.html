@@ -99,7 +99,8 @@
         }
 
         form {
-            margin-left: 20px;
+            margin-left: 5%;
+            margin-top: 1%;
             font-family: "Trebuchet MS", Helvetica, sans-serif;
         }
 
@@ -137,15 +138,14 @@
                 chart: {
                     title: 'Динамика количества пропущенных звонков с учетом скорости обработки',
                     subtitle: 'Учитываются пропущенные звонки, поступившие в рабочее время (10:00-21:00)'
-                },
-                width: 1400,
-                height: 500
+                }
             };
 
             var chart = new google.charts.Line(document.getElementById('chart_div'));
 
             chart.draw(data, google.charts.Line.convertOptions(options));
         }
+
         function drawChart2() {
             var data2 = new google.visualization.DataTable();
             data2.addColumn('string', 'Дата');
@@ -165,14 +165,17 @@
                 chart: {
                     title: 'Средняя скорость обработки пропущенных звонков',
                     subtitle: 'Учитываются пропущенные звонки, поступившие в рабочее время (10:00-21:00)'
-                },
-                width: 1400,
-                height: 500
+                }
             };
 
             var chart2 = new google.charts.Line(document.getElementById('chart_div2'));
             chart2.draw(data2, google.charts.Line.convertOptions(options));
         }
+
+        window.addEventListener('resize', function () {
+            drawChart();
+            drawChart2();
+        }, false);
     </script>
 </head>
 <body>
@@ -209,8 +212,8 @@
     </div>
 </form>
 
-<div id="chart_div" style="margin-left: 20px; margin-top: 30px"></div>
-<div id="chart_div2" style="margin-left: 20px; margin-top: 60px"></div>
+<div id="chart_div" style="height:500px;width: 90%;margin-top: 3%; margin-left: 5%"></div>
+<div id="chart_div2" style="height:500px;width: 90%;margin-top: 3%; margin-left: 5%"></div>
 
 </body>
 </html>
